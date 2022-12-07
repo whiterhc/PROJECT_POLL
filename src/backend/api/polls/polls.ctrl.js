@@ -15,7 +15,7 @@ const polls = [
  *  { title, type, status }
  *
  * */
-exports.write = ctx => {
+export const write = ctx => {
 	const {title, type, status, link} = ctx.request.body;
 	pollsId += 1;
 	const poll = {id: pollsId, title, type, status, link};

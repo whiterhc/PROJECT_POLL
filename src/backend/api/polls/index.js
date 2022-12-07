@@ -18,3 +18,5 @@ polls.delete('/:id', printInfo);
 polls.put('/:id', printInfo);
 polls.patch('/:id', printInfo);
 module.exports = polls;
+
+export default polls;

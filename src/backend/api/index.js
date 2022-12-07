@@ -5,4 +5,4 @@ const api = new Router();
 
 api.use('/polls', polls.routes());
 
-module.exports = api;
+export default api;

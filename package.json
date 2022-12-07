@@ -20,5 +20,6 @@
   "scripts": {
     "start": "node src/backend",
     "start:dev": "nodemon --watch src/backend src/backend/index.js"
-  }
+  },
+  "type": "module"
 }
