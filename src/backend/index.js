@@ -1,7 +1,9 @@
+require('dotenv').config();
 const Koa = require('koa');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 
+const {PORT} = process.env
 const api = require('./api');
 
 const app = new Koa();
@@ -25,6 +27,7 @@ app.use(bodyParser());
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(5000, () => {
-	console.log('Listening to port 5000');
+const port = PORT || 5000;
+app.listen(port, () => {
+	console.log('Listening to port %d', port);
 });
