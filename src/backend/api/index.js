@@ -1,5 +1,5 @@
-const Router = require('koa-router');
-const polls = require('./polls');
+import Router from 'koa-router';
+import polls from './polls/index.js';
 
 const api = new Router();
 

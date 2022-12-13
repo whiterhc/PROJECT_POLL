@@ -1,9 +1,10 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
 import Koa from 'koa';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 import mongoose from 'mongoose';
 
+dotenv.config();
 // MongoDB
 const {PORT, MONGO_URI} = process.env
 
@@ -13,7 +14,7 @@ mongoose
 	.catch(e => {console.error(e);});
 
 // api Router
-import api from './api';
+import api from './api/index.js';
 
 const app = new Koa();
 const router = new Router();
