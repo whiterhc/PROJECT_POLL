@@ -1,0 +1,75 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div#app {
+	margin: 0;
+	padding: 0;
+}
+
+div#container {
+	margin: 0 auto 0 auto;
+	padding: 0;
+	width: 320px;
+	height: 100vh;
+	background: linear-gradient(120deg, #945a89, #292482);
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+div#introBox {
+	width: 320px;
+	height: auto;
+	padding: 20px;
+}
+div#introBox h2 {
+	margin: 0;
+	color: #fff;
+}
+div#introBox h3 {
+	margin: 0;
+	color: #fff
+}
+
+@keyframes up {
+	0% {
+		bottom: 0px;
+	}
+	50% {
+		bottom: 50px;
+	}
+	100% {
+		bottom: 55px;
+	}
+}
+
+div#btnBox {
+	width: 320px;
+	margin-top: 10px;
+	background-color: transparent;
+}
+button#createPollBtn {
+	opacity: 0;
+	margin-left: 130px;
+	padding: 10px;
+	border-radius: 50px;
+	border-width: 0px;
+	background-color: #fff;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	font-weight: 500;
+	color: #292482;
+}
+.animatedMt {
+	transition-property: margin-top;
+	transition-duration: 0.7s;
+}
+.animatedOp {
+	transition-property: opacity;
+	transition-duration: 0.7s;
+}
+
+
+
+
+
