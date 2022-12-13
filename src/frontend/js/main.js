@@ -1,7 +1,5 @@
 const $app = document.getElementById('app');
 
-const ImgLogo = () => ``;
-
 const HeadIntro = () => `
 	<div id="introBox">
 		<h2>안녕하세요.</h2>
@@ -22,14 +20,19 @@ const ButtonCreatePoll = () => `
 
 const template = () => {
 	return `
-		${HeadIntro()}
-		${ButtonCreatePoll()}
+		<div id="container">
+			${HeadIntro()}
+			${ButtonCreatePoll()}
+		</div>
 	`
 }
 
 const setEvent = () => {
+	// DOM Element Variables
 	const $btnBox = document.getElementById("btnBox");
 	const $createPollBtn = document.getElementById("createPollBtn");
+
+	// 1. Btn Animation
 	const btnAnimation = () => {
 		$createPollBtn.style.opacity = 1;
 		$btnBox.style.marginTop = "0px";
@@ -41,12 +44,8 @@ const setEvent = () => {
 }
 
 const render = () => {
-	$app.innerHTML = `
-		<div id="container">
-			${template()}
-		</div>
-	`;
+	$app.innerHTML = template();
+	setEvent();
 }
 
 render();
-setEvent();
