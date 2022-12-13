@@ -1,3 +1,5 @@
+import {pollsCreateRender} from "../pages/polls/create.js";
+
 const $app = document.getElementById('app');
 
 const HeadIntro = () => `
@@ -37,10 +39,11 @@ const setEvent = () => {
 		$createPollBtn.style.opacity = 1;
 		$btnBox.style.marginTop = "0px";
 	}
-	let btnEventTimeout;
+
+	let btnEventTimeout
 	document.addEventListener("DOMContentLoaded", () => {
 		btnEventTimeout = setTimeout(btnAnimation, 300);
-	})
+	});
 	clearTimeout(btnEventTimeout);
 
 	// 2. Routing
@@ -50,12 +53,16 @@ const setEvent = () => {
 	})
 }
 
-const render = () => {
+const mainRender = () => {
+	$app.innerHTML = template();
+	setEvent();
+}
+
+export const render = () => {
 	if (window.location.pathname === "/") {
-		$app.innerHTML = template();
-		setEvent();
-	} else {
-		$app.innerHTML = ``;
+		mainRender();
+	} else if (window.location.pathname === "/polls/create") {
+		pollsCreateRender();
 	}
 }
 
