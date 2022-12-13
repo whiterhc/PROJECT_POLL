@@ -37,15 +37,26 @@ const setEvent = () => {
 		$createPollBtn.style.opacity = 1;
 		$btnBox.style.marginTop = "0px";
 	}
+	let btnEventTimeout;
 	document.addEventListener("DOMContentLoaded", () => {
-		const btnEventTimeout = setTimeout(btnAnimation, 300);
+		btnEventTimeout = setTimeout(btnAnimation, 300);
 	})
 	clearTimeout(btnEventTimeout);
+
+	// 2. Routing
+	$createPollBtn.addEventListener("click", () => {
+		window.history.pushState(null, null, location.origin + "/polls/create");
+		render();
+	})
 }
 
 const render = () => {
-	$app.innerHTML = template();
-	setEvent();
+	if (window.location.pathname === "/") {
+		$app.innerHTML = template();
+		setEvent();
+	} else {
+		$app.innerHTML = ``;
+	}
 }
 
 render();

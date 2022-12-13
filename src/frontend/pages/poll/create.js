@@ -10,7 +10,6 @@
 	</head>
 	<body>
 		<div id="app"></div>
-		<script type="module" src="pages/main.js"></script>
-		<script type="module" src="pages/poll/create.js"></script>
+		<script type="module" src="js/poll/create.js"></script>
 	</body>
 </html>
