@@ -32,8 +32,11 @@ export const write = async ctx => {
 	});
 	try {
 		await poll.save();
-		ctx.redirect("/polls");
-		// ctx.redirect(`/polls/${poll.title}`)
+		if (poll.isPublic) {
+			ctx.redirect("/polls");
+		} else {
+			ctx.redirect("/polls/${poll.title}/identifier")
+		}
 	} catch (e) {
 		ctx.throw(500, e);
 	}
