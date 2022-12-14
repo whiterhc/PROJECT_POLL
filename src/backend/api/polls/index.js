@@ -1,4 +1,5 @@
 import Router from 'koa-router';
+import bodyParser from 'koa-bodyparser';
 import * as pollsCtrl from './polls.ctrl.js';
 
 const polls = new Router();

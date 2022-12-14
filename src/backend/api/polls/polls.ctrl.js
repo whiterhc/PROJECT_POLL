@@ -22,14 +22,13 @@ export const list = async ctx => {
  *
  * */
 export const write = async ctx => {
-	const {title, status} = ctx.request.body;
+	const {title} = ctx.request.body;
 	const poll = new Poll({
 		title,
-		status,
 	});
 	try {
 		await poll.save();
-		ctx.body = poll;
+		ctx.redirect(`/polls/${poll._id}`)
 	} catch (e) {
 		ctx.throw(500, e);
 	}

@@ -67,3 +67,4 @@ export const render = () => {
 }
 
 render();
+console.log(window.location);
