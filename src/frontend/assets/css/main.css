@@ -32,18 +32,6 @@ div#introBox h3 {
 	color: #fff
 }
 
-@keyframes up {
-	0% {
-		bottom: 0px;
-	}
-	50% {
-		bottom: 50px;
-	}
-	100% {
-		bottom: 55px;
-	}
-}
-
 div#btnBox {
 	width: 320px;
 	margin-top: 10px;

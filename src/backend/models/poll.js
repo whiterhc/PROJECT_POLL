@@ -5,8 +5,18 @@ const {Schema} = mongoose;
 const PollSchema = new Schema({
 	id: mongoose.Schema.Types.ObjectId,
 	title: String,
-	status: String,
+	status: {
+		type: String,
+		enum: ['Created', 'Opened', 'Stopped', 'Closed'],
+		default: 'Created'
+	},
+	deadline: Date,
+	maxAnswer: Number,
 	link: String,
+	share: {
+		type: Boolean,
+		default: false
+	},
 	publishedDate: Date,
 });
 

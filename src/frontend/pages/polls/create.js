@@ -15,15 +15,31 @@ const InputPollTitle = () => `
 	</div>
 `;
 
-const ButtonSubmitForm = () => `
+const InputPollMaxPeople = () => `
 	<div class="pollsCreate_inputBox">
-		<button type="submit" id="projectSubmit">완료</button>
+		<label for="projectMaxAnswers"><span>목표 응답 수</span><br/></label>
+		<input type="number" id="projectMaxAnswers" name="maxAnswer">	
+	</div>
+`
+
+const InputPollDeadline = () => `
+	<div class="pollsCreate_inputBox">
+		<label for="projectDeadline"><span>설문 기한</span><br/></label>
+		<input type="date" id="projectDeadline" name="deadline">			
+	</div>
+`
+
+const ButtonSubmitForm = () => `
+	<div id="pollsCreate_btnBox" class="pollsCreate_inputBox animatedMt">
+		<button type="submit" id="projectSubmit" class="animatedOp">설문 프로젝트 생성</button>
 	</div>
 `;
 
 const FormPollsCreate = () => `
 	<form action="/api/polls" method="post" name="pollsCreate">
 		${InputPollTitle()}	
+		${InputPollMaxPeople()}
+		${InputPollDeadline()}
 		${ButtonSubmitForm()}
 	</form>
 `
@@ -38,12 +54,28 @@ const template = () => {
 }
 
 const setEvent = () => {
-	// 페이지 새로 고침을 눌렀을 때
+	// DOM Element Variables
+	const $btnBox = document.getElementById("pollsCreate_btnBox");
+	const $submitBtn = document.getElementById("projectSubmit");
+
+	// 1. Btn Animation
+	const btnAnimation = () => {
+		$submitBtn.style.opacity = 1;
+		$btnBox.style.marginTop = "0px";
+	}
+
+	let btnEventTimeout
+	document.addEventListener("DOMContentLoaded", () => {
+		btnEventTimeout = setTimeout(btnAnimation, 300);
+	});
+	clearTimeout(btnEventTimeout);
+
+	// 2. 페이지 새로 고침을 눌렀을 때
 	window.onunload = (e) => {
 		pollsCreateRender();
 	}
 
-	// 뒤로 가기 버튼을 눌렀을 때 이벤트 감지
+	// 3. 뒤로 가기 버튼을 눌렀을 때 이벤트 감지
 	window.onpopstate = (e) => {
 		render();
 		location.reload();

@@ -22,13 +22,16 @@ export const list = async ctx => {
  *
  * */
 export const write = async ctx => {
-	const {title} = ctx.request.body;
+	const {title, maxAnswer, deadline} = ctx.request.body;
 	const poll = new Poll({
 		title,
+		maxAnswer,
+		deadline
 	});
 	try {
 		await poll.save();
-		ctx.redirect(`/polls/${poll.title}`)
+		ctx.redirect("/polls");
+		// ctx.redirect(`/polls/${poll.title}`)
 	} catch (e) {
 		ctx.throw(500, e);
 	}
