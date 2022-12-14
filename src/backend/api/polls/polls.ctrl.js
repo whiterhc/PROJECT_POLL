@@ -22,11 +22,13 @@ export const list = async ctx => {
  *
  * */
 export const write = async ctx => {
-	const {title, maxAnswer, deadline} = ctx.request.body;
+	const {title, maxAnswer, deadline, isPublic} = ctx.request.body;
+	console.log(isPublic)
 	const poll = new Poll({
 		title,
 		maxAnswer,
-		deadline
+		deadline,
+		isPublic: isPublic === "on" ? true : false,
 	});
 	try {
 		await poll.save();

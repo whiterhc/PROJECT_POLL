@@ -13,9 +13,8 @@ const PollSchema = new Schema({
 	deadline: Date,
 	maxAnswer: Number,
 	link: String,
-	share: {
+	isPublic: {
 		type: Boolean,
-		default: false
 	},
 	publishedDate: Date,
 });

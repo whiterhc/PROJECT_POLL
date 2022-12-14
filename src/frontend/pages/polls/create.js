@@ -29,6 +29,13 @@ const InputPollDeadline = () => `
 	</div>
 `
 
+const InputPollIsPublic = () => `
+	<div id="pollsCreate_checkboxBox">
+		<label for="projectIsPublic"><span>설문 공개 여부</span><br/></label>
+		<input type="checkbox" id="projectIsPublic" name="isPublic">					
+	</div>
+`
+
 const ButtonSubmitForm = () => `
 	<div id="pollsCreate_btnBox" class="pollsCreate_inputBox animatedMt">
 		<button type="submit" id="projectSubmit" class="animatedOp">설문 프로젝트 생성</button>
@@ -40,6 +47,7 @@ const FormPollsCreate = () => `
 		${InputPollTitle()}	
 		${InputPollMaxPeople()}
 		${InputPollDeadline()}
+		${InputPollIsPublic()}
 		${ButtonSubmitForm()}
 	</form>
 `
@@ -61,7 +69,7 @@ const setEvent = () => {
 	// 1. Btn Animation
 	const btnAnimation = () => {
 		$submitBtn.style.opacity = 1;
-		$btnBox.style.marginTop = "0px";
+		$btnBox.style.marginTop = "10px";
 	}
 
 	let btnEventTimeout
