@@ -28,7 +28,7 @@ export const write = async ctx => {
 	});
 	try {
 		await poll.save();
-		ctx.redirect(`/polls/${poll._id}`)
+		ctx.redirect(`/polls/${poll.title}`)
 	} catch (e) {
 		ctx.throw(500, e);
 	}

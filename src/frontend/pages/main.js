@@ -1,4 +1,5 @@
 import {pollsCreateRender} from "../pages/polls/create.js";
+import {pollsDetailsRender} from '../pages/polls/details.js';
 
 const $app = document.getElementById('app');
 
@@ -58,11 +59,18 @@ const mainRender = () => {
 	setEvent();
 }
 
-export const render = () => {
+export const render = (renderParams) => {
+	const pollsRegex = /\/polls\/[a-zA-Z]|[ㄱ-ㅎ가-힣]|[0-9]|\%/;
+
 	if (window.location.pathname === "/") {
 		mainRender();
-	} else if (window.location.pathname === "/polls/create") {
-		pollsCreateRender();
+	} else if (window.location.pathname.match(pollsRegex)) {
+		if (window.location.pathname.split("/polls/")[1] === "create") {
+			pollsCreateRender();
+		} else {
+			// /polls/:title
+			pollsDetailsRender();
+		}
 	}
 }
 
