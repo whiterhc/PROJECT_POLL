@@ -52,6 +52,7 @@ const setEvent = () => {
 	$createPollBtn.addEventListener("click", () => {
 		window.history.pushState(null, null, location.origin + "/polls/create");
 		render();
+		location.reload();
 	})
 }
 
@@ -75,6 +76,7 @@ export const render = (renderParams) => {
 			pollsDetailsRender();
 		}
 	}
+	// render 함수 호출 이후, 새로고침.
 }
 
 render();

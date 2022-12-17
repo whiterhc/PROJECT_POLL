@@ -79,9 +79,9 @@ const setEvent = () => {
 	clearTimeout(btnEventTimeout);
 
 	// 2. 페이지 새로 고침을 눌렀을 때
-	window.onunload = (e) => {
-		pollsCreateRender();
-	}
+	// window.onunload = (e) => {
+	//	pollsCreateRender();
+	// }
 
 	// 3. 뒤로 가기 버튼을 눌렀을 때 이벤트 감지
 	window.onpopstate = (e) => {
