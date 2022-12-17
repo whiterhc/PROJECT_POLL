@@ -18,8 +18,9 @@ const InputPollTitle = () => `
 
 const InputPollMaxPeople = () => `
 	<div class="pollsCreate_inputBox">
-		<label for="projectMaxAnswers"><span>목표 응답 수</span><br/></label>
-		<input type="number" id="projectMaxAnswers" name="maxAnswer">
+		<label for="pollsCreate_maxAnswers"><span>목표 응답 수</span><br/></label>
+		<input type="number" id="pollsCreate_maxAnswers" name="maxAnswer">
+		<span id="pollsCreate_maxAnswersVmsg" class="vmsg">최대 1000명 이하, 필수 입력 값입니다.</span>
 	</div>
 `
 
@@ -71,6 +72,7 @@ const setEvent = () => {
 	// DOM Element Variables
   const $form = document.getElementById("pollsCreate_form");
   const $inputTitle = document.getElementById("pollsCreate_title");
+  const $inputMaxAnswers = document.getElementById("pollsCreate_maxAnswers");
 	const $btnBox = document.getElementById("pollsCreate_btnBox");
 	const $submitBtn = document.getElementById("projectSubmit");
 
@@ -97,6 +99,16 @@ const setEvent = () => {
     }
   })
 
+  $inputMaxAnswers.addEventListener("input", () => {
+    if ($inputMaxAnswers.value === "") {
+      $inputMaxAnswers.style.borderColor = '#e7859d';
+      document.getElementById("pollsCreate_maxAnswersVmsg").style.display = "inline-block";
+    } else if ($inputMaxAnswers.value.length > 0) {
+      $inputMaxAnswers.style.borderColor = '#98afd2';
+      document.getElementById("pollsCreate_maxAnswersVmsg").style.display = "none";
+    }
+  })
+
   // 3. validation and go submit
   $form.addEventListener("submit", (e) => {
     let isSubmit = true;
@@ -106,6 +118,13 @@ const setEvent = () => {
       isSubmit = false;
       $inputTitle.style.borderColor = '#e7859d';
       document.getElementById("pollsCreate_titleVmsg").style.display = "inline-block";
+    }
+
+    if ($inputMaxAnswers.value === "") {
+      e.preventDefault();
+      isSubmit = false;
+      $inputMaxAnswers.style.borderColor = '#e7859d';
+      document.getElementById("pollsCreate_maxAnswersVmsg").style.display = "inline-block";
     }
 
     return isSubmit;
