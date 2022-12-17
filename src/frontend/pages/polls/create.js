@@ -10,22 +10,23 @@ const HeadTitle = () => `
 
 const InputPollTitle = () => `
 	<div class="pollsCreate_inputBox">
-		<label for="projectName"><span>프로젝트 이름</span><br/></label>
-		<input type="text" id="projectName" name="title">
+		<label for="pollsCreate_title"><span>프로젝트 이름</span><br/></label>
+		<input type="text" id="pollsCreate_title" name="title"><br/>
+		<span id="pollsCreate_titleVmsg" class="vmsg">필수 입력 값입니다.</span>
 	</div>
 `;
 
 const InputPollMaxPeople = () => `
 	<div class="pollsCreate_inputBox">
 		<label for="projectMaxAnswers"><span>목표 응답 수</span><br/></label>
-		<input type="number" id="projectMaxAnswers" name="maxAnswer">	
+		<input type="number" id="projectMaxAnswers" name="maxAnswer">
 	</div>
 `
 
 const InputPollDeadline = () => `
 	<div class="pollsCreate_inputBox">
 		<label for="projectDeadline"><span>설문 기한</span><br/></label>
-		<input type="date" id="projectDeadline" name="deadline">			
+		<input type="date" id="projectDeadline" name="deadline">
 	</div>
 `
 
@@ -43,7 +44,7 @@ const ButtonSubmitForm = () => `
 `;
 
 const FormPollsCreate = () => `
-	<form action="/api/polls" method="post" name="pollsCreate">
+	<form action="/api/polls" method="post" id="pollsCreate_form" name="pollsCreate">
 		${InputPollTitle()}	
 		${InputPollMaxPeople()}
 		${InputPollDeadline()}
@@ -63,6 +64,8 @@ const template = () => {
 
 const setEvent = () => {
 	// DOM Element Variables
+  const $form = document.getElementById("pollsCreate_form");
+  const $inputTitle = document.getElementById("pollsCreate_title");
 	const $btnBox = document.getElementById("pollsCreate_btnBox");
 	const $submitBtn = document.getElementById("projectSubmit");
 
@@ -78,12 +81,18 @@ const setEvent = () => {
 	});
 	clearTimeout(btnEventTimeout);
 
-	// 2. 페이지 새로 고침을 눌렀을 때
-	// window.onunload = (e) => {
-	//	pollsCreateRender();
-	// }
+  // 2. validation style
+  $inputTitle.addEventListener("input", () => {
+    if ($inputTitle.value === "") {
+      $inputTitle.style.borderColor = '#e7859d';
+      document.getElementById("pollsCreate_titleVmsg").style.display = "inline-block";
+    } else if ($inputTitle.value.length > 0) {
+      $inputTitle.style.borderColor = '#98afd2';
+      document.getElementById("pollsCreate_titleVmsg").style.display = "none";
+    }
+  })
 
-	// 3. 뒤로 가기 버튼을 눌렀을 때 이벤트 감지
+	// 3. 뒤로 가기/앞으로 가기 버튼을 눌렀을 때 이벤트 감지
 	window.onpopstate = (e) => {
 		render();
 		location.reload();

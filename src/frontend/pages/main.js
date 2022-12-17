@@ -22,6 +22,8 @@ const ButtonCreatePoll = () => `
 	</div>
 `;
 
+// UI : polls search
+
 const template = () => {
 	return `
 		<div id="container">
@@ -48,12 +50,19 @@ const setEvent = () => {
 	});
 	clearTimeout(btnEventTimeout);
 
-	// 2. Routing
+	// 2. $createPollBtn click
 	$createPollBtn.addEventListener("click", () => {
+		// (1) Routing
 		window.history.pushState(null, null, location.origin + "/polls/create");
 		render();
 		location.reload();
 	})
+
+	// 3. 뒤로 가기/앞으로 가기 버튼을 눌렀을 때 이벤트 감지
+  window.onpopstate = (e) => {
+    render();
+  	location.reload();
+  }
 }
 
 const mainRender = () => {
