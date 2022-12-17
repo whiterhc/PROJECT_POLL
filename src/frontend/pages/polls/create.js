@@ -39,18 +39,23 @@ const InputPollIsPublic = () => `
 
 const ButtonSubmitForm = () => `
 	<div id="pollsCreate_btnBox" class="pollsCreate_inputBox animatedMt">
-		<button type="submit" id="projectSubmit" class="animatedOp">설문 프로젝트 생성</button>
+		<input type="submit" id="projectSubmit" class="animatedOp" value="설문 프로젝트 생성">
 	</div>
 `;
 
 const FormPollsCreate = () => `
-	<form action="/api/polls" method="post" id="pollsCreate_form" name="pollsCreate">
-		${InputPollTitle()}	
-		${InputPollMaxPeople()}
-		${InputPollDeadline()}
-		${InputPollIsPublic()}
-		${ButtonSubmitForm()}
-	</form>
+  <form
+    action="/api/polls"
+    method="post"
+    id="pollsCreate_form"
+    name="pollsCreate"
+  >
+    ${InputPollTitle()}
+    ${InputPollMaxPeople()}
+    ${InputPollDeadline()}
+    ${InputPollIsPublic()}
+    ${ButtonSubmitForm()}
+  </form>
 `
 
 const template = () => {
@@ -81,7 +86,7 @@ const setEvent = () => {
 	});
 	clearTimeout(btnEventTimeout);
 
-  // 2. validation style
+  // 2. input styling
   $inputTitle.addEventListener("input", () => {
     if ($inputTitle.value === "") {
       $inputTitle.style.borderColor = '#e7859d';
@@ -91,6 +96,20 @@ const setEvent = () => {
       document.getElementById("pollsCreate_titleVmsg").style.display = "none";
     }
   })
+
+  // 3. validation and go submit
+  $form.addEventListener("submit", (e) => {
+    let isSubmit = true;
+
+    if ($inputTitle.value === "") {
+      e.preventDefault();
+      isSubmit = false;
+      $inputTitle.style.borderColor = '#e7859d';
+      document.getElementById("pollsCreate_titleVmsg").style.display = "inline-block";
+    }
+
+    return isSubmit;
+  });
 
 	// 3. 뒤로 가기/앞으로 가기 버튼을 눌렀을 때 이벤트 감지
 	window.onpopstate = (e) => {

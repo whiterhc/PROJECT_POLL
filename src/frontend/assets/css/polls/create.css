@@ -84,9 +84,10 @@ div#pollsCreate_btnBox {
 	text-align: center;
 }
 
-button#projectSubmit {
+input#projectSubmit {
 	opacity: 0;
 	width: 50%;
+	height: 50px;
 	padding: 10px;
 	border-radius: 50px;
 	border-width: 0px;
